@@ -1,17 +1,16 @@
 //make sure to save npm --save 
-
 var keysModule = require("./keys.js");
-
+// npm keys
 var Twitter = require('twitter');
 var fs = require("fs");
 
-
+// variable commands
 var command = process.argv[2]; 
 var argument = process.argv[3];
 
 runLiri();
 
-// var client = new Twitter(keysModule.twitterKeys);
+
 
 function runLiri(){
 

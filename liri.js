@@ -53,14 +53,14 @@ function twitterCode(){
 
 	}
 
-// 	function spotifyCode(){
+	// function spotifyCode(){
 
-// 	// 	if(argument === undefined)
-// 	// 	{
-// 	// 		argument = "The Sign";
-// 	// 	}
+	// if(argument === undefined)
+	// {
+	// 	argument = "The Sign";
+	// }
 
-// 	// 	console.log("running spot code");
+	// console.log("running spot code");
 
 
 // 	// }

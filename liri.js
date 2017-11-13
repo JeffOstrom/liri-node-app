@@ -46,24 +46,21 @@ function twitterCode(){
 	  access_token_secret: keysModule.access_token_secret
 	});
 
-	client.get("statuses/mentions_timeline",{count: 20}, function(err, tweets, response){
+	client.get("statuses/user_timeline",{count: 20}, function(err, tweets, response){
 		console.log(tweets);
 		//console.log(JSON.stringify(response));
 	})
 
 	}
 
-	// function spotifyCode(){
-
-	// if(argument === undefined)
-	// {
-	// 	argument = "The Sign";
-	// }
-
-	// console.log("running spot code");
+	function spotifyCode(){
 
 
-// 	// }
+
+
+	console.log("running spot code");
+
+	}
 
 // 	// function movieCode(){
 // 	// 	if(argument === undefined)

@@ -1,6 +1,7 @@
 //npm key list
 var keysModule = require("./keys.js");
 var Twitter = require('twitter');
+var Spotify = require('node-spotify-api');
 var fs = require("fs");
 
 //Variable commands
@@ -59,12 +60,26 @@ function twitterCode(){
 
 	}
 
+	//Spotify section
 	function spotifyCode(){
 
+		var spotify = new Spotify({
+  			id: 'cd9c9a827c754023bd878687a142f873',
+ 			secret: 'b001ac02fe7541a9851819b2fe3db4da'
+	});
+ 
+		spotify.search({ type: 'track', query: 'All the Small Things' }, function(err, data) {
+  			if (err) {
+   			return console.log('Error occurred: ' + err);
+
+   			console.log("items");
+	  		}
+ 
+			console.log(data); 
+			});
 
 
-
-	console.log("running spot code");
+	//console.log("running spot code");
 
 	}
 

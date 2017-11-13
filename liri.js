@@ -47,7 +47,13 @@ function twitterCode(){
 	});
 
 	client.get("statuses/user_timeline",{count: 20}, function(err, tweets, response){
-		console.log(tweets);
+		//For loop with display the 20 tweets in order. 
+		for(var i = 0; i < tweets.length; i++){
+			console.log(tweets[i].text);
+			//Display tweet creation time. Used API reference data documentation developer.twitter.com
+			console.log(tweets[i].created_at);
+		}
+		
 		//console.log(JSON.stringify(response));
 	})
 

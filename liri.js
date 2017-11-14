@@ -40,7 +40,7 @@ function runLiri(){
 function twitterCode(){
 
 	console.log("this is working");
-
+	//Twitter key
 	var client = new Twitter({
 	  consumer_key: keysModule.consumer_key,
 	  consumer_secret: keysModule.consumer_secret,
@@ -55,11 +55,8 @@ function twitterCode(){
 			//Display tweet creation time. Used API reference data documentation developer.twitter.com
 			console.log(tweets[i].created_at);
 		}
-		
-		//console.log(JSON.stringify(response));
 	})
-
-	}
+}
 
 	//Spotify section
 function spotifyCode(){
@@ -67,58 +64,63 @@ function spotifyCode(){
 	var spotify = new Spotify({
   		id: 'cd9c9a827c754023bd878687a142f873',
  		secret: 'b001ac02fe7541a9851819b2fe3db4da'
-	});
+		});
 
-		spotify.search({ type: 'track', query: 'All the Small Things' }, function(err, data) {
+		//Default "The Sign"
+		var song = process.argv[3];
+
+		if(song === null){
+			song = "The Sign";
+		}
+
+
+		//Search by song 
+		spotify.search({ type: 'track', query: song }, function(err, data) {
 		  if (err) {
 		    return console.log('Error occurred: ' + err);
 
 		    console.log("items");
 		  }
- 			//print to the screen
+ 			//print to the screen artist,album,track,URL if available
 			console.log(JSON.stringify(data.tracks.items[0],null,4)); 
-
 			console.log("artist:", data.tracks.items[0].artists[0].name);
+			console.log("album:", data.tracks.items[0].album.name);
+			console.log("track: ", data.tracks.items[0].name);
+			console.log("preview url: ", data.tracks.items[0].preview_url);
 	});
+}
 
-	}
+	//Movie search
+function movieCode(){
+	//Request
+	var endPoint = "http://www.omdbapi.com/?apikey=3a5bd76c&type=movie&s="+ argument;
 
-	function movieCode(){
-
-		var endPoint = "http://www.omdbapi.com/?apikey=3a5bd76c&type=movie&s="+ argument;
-
-
-	
 		movie(endPoint, function (err, response, body) {
-	  		if (err) {
-		    	return console.log('Error occurred: ' + err);
-		}
+		  	if (err) {
+			  return console.log('Error occurred: ' + err);
+			}
 	
 	  
-	  var movieData = JSON.parse(body);
-	  console.log(movieData);
-	  console.log(movieData.Search[0]);
-	  //console.log('body:', body); // Print the HTML for the Google homepage.
+	 var movieData = JSON.parse(body);
+
+		console.log(movieData);
+		console.log(movieData.Search[0]);
 	});
-	}
+}
+	//do-what-it-says
+function doWhat(){
+		//fs Node package 
+	fs.readFile("random.txt", "utf8", function(err, data){
+		console.log(data);
 
-// 	// function doWhat(){
+		var data = "spotify-this-song,I Want it That Way";
 
-// 	// 	fs.readFile("random.txt", "utf8", function(err, data){
-// 	// 		console.log(data);
+		var arr = data.split(",");
 
-// 	// 		var data = "spotify-this-song,I Want it That Way";
-
-// 	// 		var arr = data.split(",");
-
-
-// 	// 		command = arr[0];
-// 	// 		arrgument = arr[1];
-
-// 	// 		runLiri();
-
-// 	// });
-
-// }
+		command = arr[0];
+		arrgument = arr[1];
+		
+	});
+}
 
 

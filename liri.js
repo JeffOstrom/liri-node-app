@@ -11,7 +11,6 @@ var argument = process.argv[3];
 
 runLiri();
 
-
 //If the function is called using switch method 
 function runLiri(){
 	switch(command){
@@ -92,20 +91,32 @@ function spotifyCode(){
 
 	//Movie search
 function movieCode(){
-	//Request
-	var endPoint = "http://www.omdbapi.com/?apikey=3a5bd76c&type=movie&s="+ argument;
+	//Request OMDB
+	var endPoint = "https://www.omdbapi.com/?t=" + argument + "&y=&plot=short&apikey=3a5bd76c";
 
 		movie(endPoint, function (err, response, body) {
 		  	if (err) {
 			  return console.log('Error occurred: ' + err);
 			}
-	
-	  
-	 var movieData = JSON.parse(body);
+		//Display "Mr. Nobody if user enters no data"
+		if(argument === null){
+			argument = "Mr.Nobody";
+		}
 
-		console.log(movieData);
-		console.log(movieData.Search[0]);
-	});
+	
+	  //Display data 
+	var movieData = JSON.parse(body);
+	 	//log info
+		console.log("Title:", movieData.Title);
+		console.log("Release Date:", movieData.Year);
+		console.log("IMBD Rating:", movieData.imdbRating);
+		console.log("Rotten Tomatoes Rating:", movieData.Ratings[1]);
+		console.log("Country Produced:", movieData.Country);
+		console.log("Language:", movieData.Language);
+		console.log("Plot:", movieData.Plot);
+		console.log("Actors:", movieData.Actors);
+
+	 });
 }
 	//do-what-it-says
 function doWhat(){

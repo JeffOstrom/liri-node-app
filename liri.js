@@ -81,7 +81,7 @@ function spotifyCode(){
 		    console.log("items");
 		  }
  			//print to the screen artist,album,track,URL if available
-			console.log(JSON.stringify(data.tracks.items[0],null,4)); 
+			//console.log(JSON.stringify(data.tracks.items[0],null,4)); 
 			console.log("artist:", data.tracks.items[0].artists[0].name);
 			console.log("album:", data.tracks.items[0].album.name);
 			console.log("track: ", data.tracks.items[0].name);

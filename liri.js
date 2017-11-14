@@ -2,6 +2,7 @@
 var keysModule = require("./keys.js");
 var Twitter = require('twitter');
 var Spotify = require('node-spotify-api');
+var movie = require('request');
 var fs = require("fs");
 
 //Variable commands
@@ -61,37 +62,45 @@ function twitterCode(){
 	}
 
 	//Spotify section
-	function spotifyCode(){
-
-		var spotify = new Spotify({
-  			id: 'cd9c9a827c754023bd878687a142f873',
- 			secret: 'b001ac02fe7541a9851819b2fe3db4da'
+function spotifyCode(){
+	//Spotify client ID
+	var spotify = new Spotify({
+  		id: 'cd9c9a827c754023bd878687a142f873',
+ 		secret: 'b001ac02fe7541a9851819b2fe3db4da'
 	});
- 
+
 		spotify.search({ type: 'track', query: 'All the Small Things' }, function(err, data) {
-  			if (err) {
-   			return console.log('Error occurred: ' + err);
+		  if (err) {
+		    return console.log('Error occurred: ' + err);
 
-   			console.log("items");
-	  		}
- 
-			console.log(data); 
-			});
+		    console.log("items");
+		  }
+ 			//print to the screen
+			console.log(JSON.stringify(data.tracks.items[0],null,4)); 
 
-
-	//console.log("running spot code");
+			console.log("artist:", data.tracks.items[0].artists[0].name);
+	});
 
 	}
 
-// 	// function movieCode(){
-// 	// 	if(argument === undefined)
-// 	// 	{
-// 	// 		argument = "Mr. Nobody";
-// 	// 	}
+	function movieCode(){
 
-// 	// 	console.log("running movie code", " movie:", argument);
+		var endPoint = "http://www.omdbapi.com/?apikey=3a5bd76c&type=movie&s="+ argument;
 
-// 	// }
+
+	
+		movie(endPoint, function (err, response, body) {
+	  		if (err) {
+		    	return console.log('Error occurred: ' + err);
+		}
+	
+	  
+	  var movieData = JSON.parse(body);
+	  console.log(movieData);
+	  console.log(movieData.Search[0]);
+	  //console.log('body:', body); // Print the HTML for the Google homepage.
+	});
+	}
 
 // 	// function doWhat(){
 
